@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6; /* Améliore la lisibilité */
+}
+
+header {
+    width: 100%;
+    height: auto; /* Permet à la hauteur de s'ajuster selon le contenu */
+    background-color: rgb(34, 187, 39);
+    padding: 10px 0; /* Ajoute de l'espace à l'intérieur */
+}
+
+nav {
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Pour les petits écrans */
+}
+
+
+
+img {
+    object-fit: contain;
+    width: 100%;
+    height: auto; /* Rend l'image responsive */
+}
+
+ul {
+    display: flex;
+    gap: 20%;
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li a {
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 700;
+    color: white; /* Contraste avec l'arrière-plan */
+    transition: color 0.3s ease; /* Animation pour le hover */
+}
+
+ul li a:hover {
+    color: yellow;
+}
+/* Style pour la section formulaire */
+#form-section {
+    padding: 20px;
+    background-color: #f9f9f9; /* Légère différence de couleur pour séparer visuellement */
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+h1 {
+    text-align: center;
+    color: rgb(34, 187, 39);
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #333;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: rgb(34, 187, 39);
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #19961e;
+}
+
+#blogs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    justify-content: center;
+}
+
+.blog {
+    width: 300px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    transition: transform 0.3s ease;
+    box-shadow: 5px 10px #19961e;
+}
+
+.blog:hover {
+    transform: scale(1.05);
+}
+
+.blog img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.blog .auteur_title{
+    display: flex;
+    justify-content: space-between;
+}
+.blog .title {
+    width: 100%;
+    align-content: center;
+}
+.blog h2 {
+    font-size: 20px;
+    margin-top: 10px;
+    color: rgb(34, 187, 39);
+}
+
+.blog p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: #888;
+}
+
+.stats span {
+    margin-right: 10px;
+}
+
+.partedaschbord h1 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+
+
+.parteRight {
+    width: 80%;
+    margin: auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table dans la partie droite */
+.parteRight table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.parteRight table th,
+.parteRight table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.parteRight table th {
+    background-color: #19961e;
+    color: white;
+    font-weight: bold;
+}
+
+.parteRight table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-buttons .btn-edit {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.action-buttons .btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.action-buttons .btn-delete:hover {
+    background-color: #a71d2a;
+}
+
+/* Style pour page dashbordacteur*/
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
+}
+
+
+
+
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .form-container {
+        width: 90%;
+    }
+    .mainAdmin {
+        flex-direction: column; /* Affiche les sections en colonne pour les petits écrans */
+    }
+
+    .partedaschbord,
+    .parteRight {
+        max-width: 100%; /* Les deux sections prennent toute la largeur */
+    }
+}
+
