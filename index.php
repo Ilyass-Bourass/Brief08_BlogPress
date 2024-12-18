@@ -37,8 +37,6 @@
             </ul>
         </nav>
     </header>
-
-
     <section id="form-section">
         <div class="form-container">
             <div class="icondispalyFormulaire">
@@ -55,11 +53,11 @@
                 <label for="email-inscription">Email :</label>
                 <input type="email" id="email-inscription" name="email" placeholder="Entrez votre email" required>
                 
-                <!-- Champ Mot de passe -->
+               
                 <label for="password-inscription">Mot de passe :</label>
                 <input type="password" id="password-inscription" name="password" minlength="6" placeholder="Entrez votre mot de passe" required>
                 
-                <!-- Bouton de soumission -->
+            
                 <button type="submit">Créer</button>
             </form>
         </div>
@@ -73,15 +71,15 @@
         
             <h1>Connexion</h1>
             <form action="index.php" method="POST">
-                <!-- Champ Email -->
+                
                 <label for="email-connexion">Email :</label>
                 <input type="email" id="email-connexion" name="email" placeholder="Entrez votre email" required>
                 
-                <!-- Champ Mot de passe -->
+               
                 <label for="password-connexion">Mot de passe :</label>
                 <input type="password" id="password-connexion" name="password" minlength="6" placeholder="Entrez votre mot de passe" required>
                 
-                <!-- Bouton de soumission -->
+               
                 <button type="submit" name="connexion">Connexion</button>
 
             </form>
@@ -89,7 +87,7 @@
     </section>
 
     <?php
-    // Afficher le message d'erreur si il y en a une
+    
     if (isset($error_message)) {
         echo "<p style='color: red;'>$error_message</p>";
     }
@@ -111,8 +109,7 @@ if ($query) {
 
             echo "<img src='logo.svg' alt='Image du blog'>";
 
-            echo "<h2>" . $row['titre'] . "</h2>";
-
+            echo "<h2><a href='article.php?idArticle=" . $row['Article_id'] . "'>" . $row['titre'] . "</a></h2>";
             $contenu = $row['Contenu'];
             $mots = explode(' ', $contenu);
             $contenu_coupe = implode(' ', array_slice($mots, 0, 25));

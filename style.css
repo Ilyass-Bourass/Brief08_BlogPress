@@ -15,6 +15,7 @@ header {
     width: 100%;
     height: auto; /* Permet à la hauteur de s'ajuster selon le contenu */
     background-color: rgb(34, 187, 39);
+
     padding: 10px 0; /* Ajoute de l'espace à l'intérieur */
 }
 
@@ -252,6 +253,138 @@ textarea {
     resize: vertical; /* Permet à l'utilisateur de redimensionner verticalement */
 }
 
+/* style pour la page d article */
+
+/* Structure générale de la page d'article */
+#article-content {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1200px;
+}
+
+/* Partie gauche (contient l'article et le formulaire de commentaire) */
+.article-left {
+    width: 60%;
+}
+
+.article-card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.article-card h2 {
+    color: rgb(34, 187, 39);
+}
+
+.article-content {
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+.article-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.article-stats button{
+    width: 40%;
+}
+
+.like-button {
+    background-color: rgb(34, 187, 39);
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.like-button:hover {
+    background-color: #19961e;
+}
+
+.comment-section {
+    transform: scale(0.8);
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.comment-section h3 {
+    margin-bottom: 15px;
+}
+
+.comment-section input, .comment-section textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.comment-section button {
+    background-color: rgb(34, 187, 39);
+    color: white;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.comment-section button:hover {
+    background-color: #19961e;
+}
+
+/* Partie droite (contient les commentaires des utilisateurs) */
+.article-right {
+    width: 35%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.comment-list {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #555;
+}
+
+
+
+
 
 
 
@@ -279,6 +412,19 @@ textarea {
     .partedaschbord,
     .parteRight {
         max-width: 100%; /* Les deux sections prennent toute la largeur */
+    }
+    #article-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    .article-left, .article-right {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .comment-avatar {
+        width: 30px;
+        height: 30px;
     }
 }
 

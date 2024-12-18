@@ -1,6 +1,9 @@
 <?php
     session_start();
     if($_SESSION["autoriser"]!="oui"){
+        echo "bonjour";
+        var_dump($_SESSION); // ne s'affiche pas 
+        echo $_SESSION["id_auteur"]; 
         header("location:index.php");
         exit();
     }
@@ -32,9 +35,10 @@
     include 'connexion.php';
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $delete = mysqli_query($conn, "DELETE FROM article WHERE Article_id = '$id'");
+        $deletecommentaire=mysqli_query($conn, "DELETE FROM commentaire WHERE Article_id = '$id';");
+        $deleteStatistiqueArtcile=mysqli_query($conn, "DELETE FROM statistiques WHERE Article_id = '$id';");
+        $delete = mysqli_query($conn, "DELETE FROM article WHERE Article_id = '$id';");
 
-        
         if (!$delete) {
         
             echo "Erreur lors de la suppression : " . mysqli_error($conn);
@@ -200,6 +204,7 @@ if ( isset($_POST['title_modifier']) && isset($_POST['content_modifier'])) {
 </div>
 
 </div>
+
 
 </body>
 </html>
