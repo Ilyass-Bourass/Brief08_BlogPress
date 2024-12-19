@@ -2,7 +2,7 @@
     session_start();
     if($_SESSION["autoriser"]!="oui"){
         echo "bonjour";
-        var_dump($_SESSION); // ne s'affiche pas 
+        var_dump($_SESSION); 
         echo $_SESSION["id_auteur"]; 
         header("location:index.php");
         exit();
@@ -14,15 +14,18 @@
     if(isset($_POST['title']) && isset($_POST['content'])){
         $titre = $_POST['title'];
         $Contenu = $_POST['content'];
+        $id_auteur=$_SESSION["id_auteur"];
+
+       $requette = "insert into article(Auteur_id,titre,Contenu) values($id_auteur,'$titre','$Contenu')";
+       $query = mysqli_query($conn, $requette);
+       $Article_id = (int)mysqli_insert_id($conn);
+
+       $queryStatistique = mysqli_query($conn, "INSERT INTO statistiques (Article_id, vues, nombre_commentaire, nombre_jaime) 
+                                         VALUES ('$Article_id', 0, 0, 0);");
 
 
-       $requette = "insert into article(Auteur_id,titre,Contenu) values(3,'$titre','$Contenu')";
 
-
-        $query = mysqli_query($conn, $requette);
-
-
-        if ($query) {
+        if ($query && $queryStatistique) {
             echo "<script> alert('l'article a été ajouter avec succée')</script>";
         } else {
         echo "Erreur : " . mysqli_error($conn); 
@@ -67,12 +70,13 @@
             </div>
             <ul>
                 <li><a href='index.php'>Accueil</a></li>
-                <li><a href="#" id="AjouterArtcile">AjouterArtcile</a></li>
+                <li><a href="#" id="AjouterArtcile">AjouterArtcle</a></li>
                 <li><a href="Deconnexion.php" id="btnConnexion">Déconnexion</a></li>
             </ul>
 
         </nav>
     </header>
+
 
     <?php
 include 'connexion.php';
@@ -168,8 +172,9 @@ if ( isset($_POST['title_modifier']) && isset($_POST['content_modifier'])) {
    
         <?php
     include 'connexion.php';
-
-    $requette = "SELECT Article_id, titre, Date_creation_article FROM blogpress.article;";
+    $id_auteur=$_SESSION["id_auteur"];
+    $requette = "SELECT ar.Article_id,ar.titre , ar.Date_creation_article,ar.Contenu,sta.vues,sta.nombre_jaime from article ar join statistiques sta 
+on ar.Article_id=sta.Article_id WHERE ar.Auteur_id=$id_auteur;";
     $query = mysqli_query($conn, $requette);
 
     if ($query) {
@@ -179,8 +184,8 @@ if ( isset($_POST['title_modifier']) && isset($_POST['content_modifier'])) {
                 echo "<tr>";
                     echo "<td>".$row['Article_id']."</td>";
                     echo "<td>".$row['titre']."</td>";
-                    echo "<td>123</td>"; 
-                    echo "<td>45</td>"; 
+                    echo "<td>".$row['vues']."</td>"; 
+                    echo "<td>".$row['nombre_jaime']."</td>"; 
                     echo "<td>".$row['Date_creation_article']."</td>";
                     echo "<td>";
                         
@@ -192,7 +197,7 @@ if ( isset($_POST['title_modifier']) && isset($_POST['content_modifier'])) {
                 echo "</tr>";
             }
         } else {
-            echo "<p>Aucun article n'a été trouvé dans la base de données.</p>";
+            echo "<p>Aucun article de vous n'a été trouvé dans la base de données.</p>";
         }
     } else {
         echo "Erreur : impossible d'exécuter la requête.";

@@ -47,17 +47,19 @@ ul li a {
     text-decoration: none;
     font-size: 15px;
     font-weight: 700;
-    color: white; /* Contraste avec l'arrière-plan */
-    transition: color 0.3s ease; /* Animation pour le hover */
+    color: white; 
+    transition: color 0.3s ease; 
 }
 
 ul li a:hover {
     color: yellow;
 }
+
+
 /* Style pour la section formulaire */
 #form-section {
     padding: 20px;
-    background-color: #f9f9f9; /* Légère différence de couleur pour séparer visuellement */
+    background-color: #f9f9f9; 
 }
 
 .form-container {
@@ -125,6 +127,7 @@ button:hover {
     padding: 15px;
     transition: transform 0.3s ease;
     box-shadow: 5px 10px #19961e;
+    transform: scale(0.8);
 }
 
 .blog:hover {
@@ -136,6 +139,12 @@ button:hover {
     height: 200px;
     object-fit: cover;
     border-radius: 8px;
+}
+
+.blog .TitleDate{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 .blog .auteur_title{
     display: flex;
@@ -286,9 +295,13 @@ textarea {
     margin-top: 15px;
 }
 
+.article-stats span{
+    font-weight: 900;
+}
+
 .article-stats {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-top: 20px;
 }
 
@@ -298,8 +311,11 @@ textarea {
 
 .like-button {
     background-color: rgb(34, 187, 39);
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: white;
-    padding: 8px 15px;
+    padding: 5px 20px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -309,6 +325,12 @@ textarea {
 .like-button:hover {
     background-color: #19961e;
 }
+
+.reaction-buttons{
+    display: flex;
+    gap:10px;
+}
+
 
 .comment-section {
     transform: scale(0.8);
@@ -346,11 +368,16 @@ textarea {
 /* Partie droite (contient les commentaires des utilisateurs) */
 .article-right {
     width: 35%;
+    height: 400px;
+    overflow-y: auto;
+    
     background-color: #f9f9f9;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
 }
+
+
 
 .comment-list {
     margin-top: 20px;
@@ -417,6 +444,7 @@ textarea {
         flex-direction: column;
         align-items: center;
     }
+
     .article-left, .article-right {
         width: 100%;
         margin-bottom: 20px;

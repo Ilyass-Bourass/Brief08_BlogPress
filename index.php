@@ -15,12 +15,13 @@
     <script src="index.js" defer></script>
 </head>
 <body>
+
     <header>
         <nav>
             <div class="logo">
                 <img src="logo.svg" alt="Logo de l'entreprise">
             </div>
-           <!-- jai un prblem ici avec le code php   -->
+            
             <ul>
                 
                 <?php
@@ -37,6 +38,9 @@
             </ul>
         </nav>
     </header>
+    
+    
+
     <section id="form-section">
         <div class="form-container">
             <div class="icondispalyFormulaire">
@@ -93,13 +97,17 @@
     }
     ?>
 
+    <div class="title">
+        <h1>La liste des articles de notre application</h1>
+    </div>
     
  <section id="blogs">
 
  <?php
 include 'connexion.php';
 
-$requette = "SELECT * FROM article";
+$requette = "SELECT ar.Article_id,ar.titre , ar.Date_creation_article,ar.Contenu,sta.vues,sta.nombre_jaime from article ar join statistiques sta 
+on ar.Article_id=sta.Article_id ORDER BY sta.vues DESC;";
 $query = mysqli_query($conn, $requette);
 
 if ($query) {
@@ -108,16 +116,18 @@ if ($query) {
             echo "<div class='blog'>";
 
             echo "<img src='logo.svg' alt='Image du blog'>";
-
+            echo "<div class='TitleDate'>";
             echo "<h2><a href='article.php?idArticle=" . $row['Article_id'] . "'>" . $row['titre'] . "</a></h2>";
+            echo "<p>" . $row['Date_creation_article'] . "</p> ";
+            echo "</div>";
             $contenu = $row['Contenu'];
             $mots = explode(' ', $contenu);
             $contenu_coupe = implode(' ', array_slice($mots, 0, 25));
             echo "<p>" . $contenu_coupe . "...</p>";
 
             echo "<div class='stats'>";
-            echo "<span class='views'>Vues: 123</span>";
-            echo "<span class='likes'>J'aime: 45</span>";
+            echo "<span class='views'>Vues:" . $row['vues'] . "</span>";
+            echo "<span class='likes'>J'aime: " . $row['nombre_jaime'] . "</span>";
             echo "</div>";
 
             echo "</div>";
