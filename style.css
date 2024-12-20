@@ -125,7 +125,7 @@ button:hover {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    transition: transform 0.3s ease;
+    transition: transform 0.6s ease;
     box-shadow: 5px 10px #19961e;
     transform: scale(0.8);
 }
@@ -408,6 +408,35 @@ textarea {
     font-size: 14px;
     color: #555;
 }
+
+.containerStatistiqueChart{
+    width: 100%;
+    margin:100px auto 0 auto;
+}
+
+.statistiqueChart{
+    width: 80%;
+    margin:100px auto 50px auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statistiqueChart #vues{
+    width: 50%;
+    margin: auto;
+    /* background-color: #a71d2a; */
+}
+
+.statistiqueChart #jaimes{
+    width: 50%;
+    margin: auto;
+    /* background-color: #a71d2a; */
+}
+
+
 
 
 

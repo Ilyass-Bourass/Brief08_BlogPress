@@ -9,23 +9,31 @@ document.addEventListener("DOMContentLoaded",()=>{
     const btnConnexion=document.querySelector("#btnConnexion");
     
     
-
-    btnInscriptionAutuer.addEventListener("click",()=>{
+    if(btnInscriptionAutuer){
+        btnInscriptionAutuer.addEventListener("click",()=>{
         formulaireConnexon.style.display="none";
         formulaireAjouterAuteur.style.display="block";
     });
-
-    icondispalyFormulaireAjouterAuteur.addEventListener("click",()=>{
+    }
+    
+    if(icondispalyFormulaireAjouterAuteur){
+        icondispalyFormulaireAjouterAuteur.addEventListener("click",()=>{
         formulaireAjouterAuteur.style.display="none";
     });
-
+    }
+    
+    
     btnConnexion.addEventListener("click",()=>{
         formulaireAjouterAuteur.style.display="none";
         formulaireConnexon.style.display="block";
     });
 
-    icondispalyFormulaireConnexion.addEventListener("click",()=>{
+    if(icondispalyFormulaireConnexion){
+        icondispalyFormulaireConnexion.addEventListener("click",()=>{
         formulaireConnexon.style.display="none";
     });
+    }
+    
 
 })
+

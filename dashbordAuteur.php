@@ -176,7 +176,9 @@ if ( isset($_POST['title_modifier']) && isset($_POST['content_modifier'])) {
     $requette = "SELECT ar.Article_id,ar.titre , ar.Date_creation_article,ar.Contenu,sta.vues,sta.nombre_jaime from article ar join statistiques sta 
 on ar.Article_id=sta.Article_id WHERE ar.Auteur_id=$id_auteur;";
     $query = mysqli_query($conn, $requette);
-
+    $titres=[];
+    $VuesTitre=[];
+    $nombreJaime=[];
     if ($query) {
         if (mysqli_num_rows($query) > 0) {
             while ($row = mysqli_fetch_assoc($query)) {
@@ -195,6 +197,9 @@ on ar.Article_id=sta.Article_id WHERE ar.Auteur_id=$id_auteur;";
                         echo "</div>";
                     echo "</td>";
                 echo "</tr>";
+                $titres[]=$row['titre'];
+                $VuesTitre[]=$row['vues'];
+                $nombreJaime[]=$row['nombre_jaime'];
             }
         } else {
             echo "<p>Aucun article de vous n'a été trouvé dans la base de données.</p>";
@@ -202,6 +207,9 @@ on ar.Article_id=sta.Article_id WHERE ar.Auteur_id=$id_auteur;";
     } else {
         echo "Erreur : impossible d'exécuter la requête.";
     }
+    $jsonTitres = json_encode($titres);
+    $jsonVuesTitres = json_encode($VuesTitre);
+    $nombreJaime = json_encode( $nombreJaime);
 ?>
 
         </tbody>
@@ -209,7 +217,108 @@ on ar.Article_id=sta.Article_id WHERE ar.Auteur_id=$id_auteur;";
 </div>
 
 </div>
+<div class="containerStatistiqueChart">
+    <h1>les statisques de notre articles avec des graphes</h1>
+    <div class="statistiqueChart">
+        <div id="vues">
+            <canvas id="espaceVues"></canvas>
+        </div>
+        <div style="margin-top:100px" id="jaimes">
+         <canvas id="espacejaimes"></canvas>
+        </div>
+    </div>
+</div>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+  const ctx = document.getElementById('espaceVues');
+  var titres = <?php echo $jsonTitres; ?>;
+  var VuesTitres= <?php echo $jsonVuesTitres; ?>;
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: titres,
+      datasets: [{
+        label: '# les statisituques vues',
+        data: VuesTitres,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title : {
+            display:true,
+            text:'Nombre de vues',
+            font : {
+                    size:16,
+                    weight:'bold'
+                },
+             color: 'green'
+          }
+        },
+        x:{
+            title :{
+                display:true,
+                text:'Titres des articles',
+                font : {
+                    size:16,
+                    weight:'bold'
+                },
+                color: 'red'
+            }
+        }
+      }
+    }
+  });
+</script>
+
+
+<script>
+  const ctx1 = document.getElementById('espacejaimes');
+  var titres = <?php echo $jsonTitres; ?>;
+  var nombreJaime= <?php echo  $nombreJaime; ?>;
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: titres,
+      datasets: [{
+        label: '# les statisituques Jaimes',
+        data: nombreJaime,
+        borderWidth: 1,
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          title : {
+            display:true,
+            text:'Nombre de jaimes',
+            font : {
+                    size:16,
+                    weight:'bold'
+                },
+             color: 'green'
+          }
+        },
+        x:{
+            title :{
+                display:true,
+                text:'Titres des articles',
+                font : {
+                    size:16,
+                    weight:'bold'
+                },
+                color: 'red'
+            }
+        }
+      }
+    }
+  });
+</script>
 
 </body>
 </html>

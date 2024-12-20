@@ -35,8 +35,23 @@
         echo "<script> alert('l'article a été ajouter avec succée')</script>";
     } else {
     echo "Erreur : " . mysqli_error($conn); 
-}
+        }
    };
+?>
+
+<?php
+    echo "
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+        const like_button=document.querySelector('.like-button');
+        console.log(like_button);
+        like_button.addEventListener('click',()=>{
+                console.log('clique');
+
+        });
+    });
+    </script>
+    ";
 ?>
 
 

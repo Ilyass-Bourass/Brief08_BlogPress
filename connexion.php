@@ -11,6 +11,5 @@ if ($conn->connect_error) {
   die("Connexion échouée : " . $conn->connect_error);
 }
 
-// echo "Connexion réussie à la base de données '$dbname' !";
 ?>
 
