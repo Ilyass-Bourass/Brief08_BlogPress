@@ -40,18 +40,14 @@
 ?>
 
 <?php
-    echo "
-    <script>
-        document.addEventListener('DOMContentLoaded',()=>{
-        const like_button=document.querySelector('.like-button');
-        console.log(like_button);
-        like_button.addEventListener('click',()=>{
-                console.log('clique');
-
-        });
-    });
-    </script>
-    ";
+   include 'connexion.php';
+   if(isset($_GET['idArticle'])){
+       $id_article=$_GET['idArticle'];
+       $query = mysqli_query($conn, "UPDATE statistiques SET nombre_jaime = nombre_jaime + 1
+                                     WHERE Article_id = $id_article;");
+                                     
+   } 
+  
 ?>
 
 
@@ -96,36 +92,38 @@
             <!-- Contenu de l'article -->
             <div class="article-card">
             <?php
-                include 'connexion.php';
+    include 'connexion.php';
 
-                if(isset($_GET['idArticle'])){
-                    $id_article=$_GET['idArticle'];
-                    $query = mysqli_query($conn, "SELECT art.titre, art.Contenu, sta.vues, sta.nombre_jaime 
-                    FROM blogpress.article art 
-                    JOIN statistiques sta 
-                    ON art.Article_id = sta.Article_id 
-                    WHERE art.Article_id = '$id_article'");
+    if (isset($_GET['idArticle'])) {
+        $id_article = $_GET['idArticle'];
+        $query = mysqli_query($conn, "SELECT art.titre, art.Contenu, sta.vues, sta.nombre_jaime 
+                                      FROM blogpress.article art 
+                                      JOIN statistiques sta 
+                                      ON art.Article_id = sta.Article_id 
+                                      WHERE art.Article_id = '$id_article'");
 
-                    $row =mysqli_fetch_assoc($query);
-                    if($row){
-                            echo "
-                            <h2>".$row['titre']."</h2>
-                            <p class='article-content'>".$row['Contenu']."</p>
-                            <div class='article-stats'>
-                            <span>Vue :".$row['vues']."</span>
-                            <span>Jaime :".$row['nombre_jaime']."</span>
-                            <div class='reaction-buttons'>
-                                <button class='like-button'>
-                                    <i class='fa fa-thumbs-up'></i>
-                                </button>
-                                <button class='dislike-button'>
-                                    <i class='fa fa-thumbs-down'></i>
-                                </button>
-                            </div>
-                        " ;
-                    }
-                }
-            ?>
+        $row = mysqli_fetch_assoc($query);
+        if ($row) {
+            echo "
+            <h2>" . $row['titre'] . "</h2>
+            <p class='article-content'>" . $row['Contenu'] . "</p>
+            <div class='article-stats'>
+                <span>Vue : " . $row['vues'] . "</span>
+                <span>Jaime : " . $row['nombre_jaime'] . "</span>
+                <div class='reaction-buttons'>
+                    <form action='article.php?idArticle=" . $_GET['idArticle'] . "' method='POST'>
+                        <button type='submit' class='like-button'>
+                            <i class='fa fa-thumbs-up'></i>
+                        </button>
+                    </form>
+
+                </div>
+            </div>
+            ";
+        }
+    }
+?>
+
                 
                 </div>
             </div>

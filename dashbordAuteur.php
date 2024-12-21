@@ -218,7 +218,7 @@ on ar.Article_id=sta.Article_id WHERE ar.Auteur_id=$id_auteur;";
 
 </div>
 <div class="containerStatistiqueChart">
-    <h1>les statisques de notre articles avec des graphes</h1>
+    <h1>les statisques de votre articles avec des graphes</h1>
     <div class="statistiqueChart">
         <div id="vues">
             <canvas id="espaceVues"></canvas>
